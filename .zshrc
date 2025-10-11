@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+plugins=(git starship zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,4 +102,32 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-eval "$(starship init zsh)"
+# Fastfetch alias
+alias ff='clear && fastfetch'
+
+# Created by `pipx` on 2025-08-29 05:47:03
+export PATH="$PATH:/home/j3ll0/.local/bin"
+
+# ============================================================================
+# WELCOME MESSAGE
+# ============================================================================
+
+if [ -n "$PS1" ]; then
+    echo -e "\033[1;34m=== Welcome back, $USER! ===\033[0m"
+    echo -e "Date: $(date '+%A, %B %d, %Y - %I:%M %p')"
+
+    # RAM usage
+    ram_used=$(free -h | awk '/Mem:/ {print $3}')
+    ram_total=$(free -h | awk '/Mem:/ {print $2}')
+    echo -e "RAM Usage: $ram_used / $ram_total"
+
+    # CPU temperature (suppress error line)
+    cpu_temp=$(sensors 2>/dev/null | grep 'Package id 0:' | awk '{print $4}')
+    echo -e "CPU Temp: $cpu_temp"
+
+	echo -e "type 'alias' to show aliases"
+    echo
+fi
+
+source ~/.bash_aliases
+
