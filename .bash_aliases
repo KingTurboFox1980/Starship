@@ -1,19 +1,24 @@
-# The 'fu' alias updates Nix Flakes and Rebuilds
+# This alias updates Nix Flakes and Rebuilds
 alias fu='(cd /etc/nixos && sudo nixos-rebuild switch --flake .#K10)'
 
-# The 'fub' alias updates Nix Build and Nix Env
+# This alias updates Nix Build and Nix Env
 alias fub='(cd /etc/nixos && nix build .#nixosConfigurations.K10.config.system.build.toplevel)'
 
-# The 'nix' alias runs your personal update script located at /home/j3ll0/update.sh.
+# This alias runs your personal update script located at /home/j3ll0/update.sh.
 alias up='sudo /home/j3ll0/nix_update.sh'
 
-# The 'trim' alias trims the nVME.
-alias trim='sudo fstrim -v /'
+# This alias updates nix user packages.
+alias packup='nix-env -u "*"'
 
-# The 'dotfiles' alias will change the current directory to the dotfiles directory
+# This alias updates flatpaks
+alias flatup='flatpak update'
+
+# This alias trims the Samsung nVME and the Crucial nVME.
+alias trim='sudo fstrim -v / ; sudo fstrim -v /mnt/data'
+
+# This alias will change the current directory to the dotfiles directory
 # in your home folder. This is a common location for configuration files.
 alias dot='cd /etc/nixos/'
-
 
 # This alias is for the `ls` command, adding the `--color=auto` option to make
 # the output more readable.
